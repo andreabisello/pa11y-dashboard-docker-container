@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    depends_on:
+      - mongo
+    build: .
+    ports:
+      - 4000:4000
+    container_name: pa11y-dashboard
+    links:
+      - database:mongodb
+  mongo:
+    image: mongo:4.4
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb:/data/db
+volumes:
+  mongodb:
